@@ -5,10 +5,7 @@ import org.samurai.bot.Bot;
 import org.samurai.command.Command;
 import org.samurai.command.ParsedCommand;
 import org.samurai.command.Parser;
-import org.samurai.handler.AbstractHandler;
-import org.samurai.handler.DefaultHandler;
-import org.samurai.handler.NotifyHandler;
-import org.samurai.handler.SystemHandler;
+import org.samurai.handler.*;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Update;
 
@@ -73,6 +70,10 @@ public class MessageReciever implements Runnable {
         switch (command) {
             case START:
             case HELP:
+            case WEATHER:
+                WeatherHandler weatherHandler = new WeatherHandler(bot);
+                log.info("Handler for command[" + command.toString() + "] is: " + weatherHandler);
+                return weatherHandler;
             case ID:
                 SystemHandler systemHandler = new SystemHandler(bot);
                 log.info("Handler for command[" + command.toString() + "] is: " + systemHandler);

@@ -30,7 +30,7 @@ public class Notify implements Runnable {
         } catch (InterruptedException e) {
             log.error(e.getMessage(), e);
         }
-        log.info("FIHISH. " + toString());
+        log.info("FINISH. " + toString());
     }
 
     private SendMessage getFirstMessage() {
@@ -42,9 +42,5 @@ public class Notify implements Runnable {
         sendSticker.setSticker("CAADBQADiQMAAukKyAPZH7wCI2BwFxYE");
         sendSticker.setChatId(chatID);
         return sendSticker;
-    }
-
-    private SendMessage getSecondMessage() {
-        return new SendMessage(chatID, "This is notify message. Thanks for using :)");
     }
 }

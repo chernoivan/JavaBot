@@ -6,5 +6,6 @@ public enum Command {
     NOTIFY,
     START,
     HELP,
-    ID
+    ID,
+    WEATHER
 }
