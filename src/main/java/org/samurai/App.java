@@ -6,6 +6,10 @@ import org.samurai.service.MessageReciever;
 import org.samurai.service.MessageSender;
 import org.telegram.telegrambots.ApiContextInitializer;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 public class App {
     private static final Logger log = Logger.getLogger(App.class);
     private static final int PRIORITY_FOR_SENDER = 1;
@@ -14,7 +18,15 @@ public class App {
 
     public static void main(String[] args) {
         ApiContextInitializer.init();
-        Bot test_samurai_bot = new Bot("test_samurai_bot", "1521056118:AAHeL22P6t2Q6E7F4hVYht-3u5dTbYas-nA");
+
+        String token = null;
+        try {
+            token = Files.lines(Paths.get("token.txt")).reduce("", String::concat);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Bot test_samurai_bot = new Bot("test_samurai_bot", token);
 
         MessageReciever messageReciever = new MessageReciever(test_samurai_bot);
         MessageSender messageSender = new MessageSender(test_samurai_bot);
